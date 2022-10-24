@@ -4,7 +4,7 @@ import java.util.ArrayList;
 public class Main {
     private static final DecimalFormat df = new DecimalFormat("0.00");
     public static void main(String[] args) {
-        int count=21;
+        int count=20;
         ArrayList<Integer> fibonacci = new ArrayList<>();
         for (Integer integer : Fibonacci.FibonacciGeneration(count - 2, fibonacci)) {
             System.out.print(integer+" ");
@@ -42,10 +42,11 @@ class Fibonacci {
         return sum/count;
     }
     static int FibonacciMedian(ArrayList<Integer> sequence){
+            int half = sequence.size()/2;
             if (sequence.size()%2==0){
-                return (sequence.get(sequence.size()/2)+sequence.get((sequence.size()/2)-1))/2;
+                return (sequence.get(half)+sequence.get(half-1))/2;
             } else {
-            return sequence.get(sequence.size() / 2);
+            return sequence.get(half);
         }
     }
 }
