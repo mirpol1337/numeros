@@ -11,7 +11,7 @@ public class Main {
         }
         System.out.println();
         System.out.println("Mean of the sequence is " +df.format(Fibonacci.FibonacciMean(count,fibonacci)));
-        System.out.println("Median of the sequence is "+Fibonacci.FibonacciMedian(count,fibonacci) );
+        System.out.println("Median of the sequence is "+Fibonacci.FibonacciMedian(fibonacci) );
 
     }
 }
@@ -41,11 +41,7 @@ class Fibonacci {
         }
         return sum/count;
     }
-    static int FibonacciMedian(int count,ArrayList<Integer> sequence){
-        if (sequence.size()%2==0){
-           return sequence.get((sequence.size() / 2)+1);
-        }else {
+    static int FibonacciMedian(ArrayList<Integer> sequence){
             return sequence.get(sequence.size() / 2);
         }
-    }
 }
