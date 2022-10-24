@@ -42,11 +42,11 @@ class Fibonacci {
         return sum/count;
     }
     static int FibonacciMedian(ArrayList<Integer> sequence){
-            int half = sequence.size()/2;
+            int middleIndex = sequence.size()/2;
             if (sequence.size()%2==0){
-                return (sequence.get(half)+sequence.get(half-1))/2;
+                return (sequence.get(middleIndex)+sequence.get(middleIndex-1))/2;
             } else {
-            return sequence.get(half);
+            return sequence.get(middleIndex);
         }
     }
 }
