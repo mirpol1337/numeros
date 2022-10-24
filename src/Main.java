@@ -42,6 +42,10 @@ class Fibonacci {
         return sum/count;
     }
     static int FibonacciMedian(ArrayList<Integer> sequence){
+            if (sequence.size()%2==0){
+                return (sequence.get(sequence.size()/2)+sequence.get((sequence.size()/2)-1))/2;
+            } else {
             return sequence.get(sequence.size() / 2);
         }
+    }
 }
