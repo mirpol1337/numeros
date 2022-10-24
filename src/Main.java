@@ -4,7 +4,7 @@ import java.util.ArrayList;
 public class Main {
     private static final DecimalFormat df = new DecimalFormat("0.00");
     public static void main(String[] args) {
-        int count=20;
+        int count=21;
         ArrayList<Integer> fibonacci = new ArrayList<>();
         for (Integer integer : Fibonacci.FibonacciGeneration(count - 2, fibonacci)) {
             System.out.print(integer+" ");
