@@ -1,52 +1,60 @@
-import java.text.DecimalFormat;
-import java.util.ArrayList;
+import java.util.Arrays;
 
 public class Main {
-    private static final DecimalFormat df = new DecimalFormat("0.00");
     public static void main(String[] args) {
         int count=21;
-        ArrayList<Integer> fibonacci = new ArrayList<>();
-        for (Integer integer : Fibonacci.FibonacciGeneration(count - 2, fibonacci)) {
-            System.out.print(integer+" ");
-        }
-        System.out.println();
-        System.out.println("Mean of the sequence is " +df.format(Fibonacci.FibonacciMean(count,fibonacci)));
-        System.out.println("Median of the sequence is "+Fibonacci.FibonacciMedian(fibonacci) );
-
+        Fibonacci leonardo = new Fibonacci(count);
+        System.out.println(Arrays.toString(leonardo.getFibonacciSequence()));
+        System.out.println(leonardo.getMean());
+        System.out.println(leonardo.getMedian());
     }
 }
 class Fibonacci {
-    public static int number1 = 0;
-    public static int number2 = 1;
-    public static int number3 = 0;
-    static ArrayList<Integer> FibonacciGeneration(int count,ArrayList<Integer> sequence) {
+    public Fibonacci(int size) {
+        this.size = size;
+        this.fibonacciSequence = this.calculateSequence(size);
+        this.mean = this.calculateMean();
+        this.median = this.calculateMedian();
+    }
 
-        if (count > 0) {
-            number3 = number1 + number2;
-            number1 = number2;
-            number2 = number3;
-            if(sequence.size()==0){
-                sequence.add(0);
-                sequence.add(1);
-            }
-            sequence.add(number3);
-            FibonacciGeneration(count-1,sequence);
-        }
-        return sequence;
+    int size;
+    int[] fibonacciSequence;
+    double median;
+    double mean;
+
+    public int[] getFibonacciSequence() {
+        return fibonacciSequence;
     }
-    static double FibonacciMean(int count,ArrayList<Integer> sequence){
-        double sum = 0;
-        for (int i = 0; i < sequence.size(); i++) {
-            sum+= sequence.get(i);
-        }
-        return sum/count;
+
+    public double getMedian() {
+        return median;
     }
-    static int FibonacciMedian(ArrayList<Integer> sequence){
-            int middleIndex = sequence.size()/2;
-            if (sequence.size()%2==0){
-                return (sequence.get(middleIndex)+sequence.get(middleIndex-1))/2;
-            } else {
-            return sequence.get(middleIndex);
+
+    public double getMean() {
+        return mean;
+    }
+
+    private int[] calculateSequence(int size) {
+        int[] result = new int[size];
+        result[0] = 0;
+        result[1] = 1;
+        for(int i = 2; i < size; i++) {
+           result[i] = result[i-1] + result[i-2];
         }
+        return result;
+    }
+
+    private double calculateMean() {
+        int sum = 0;
+        for(int i = 0; i < this.size; i++) {
+            sum += this.fibonacciSequence[i];
+        }
+        return sum / this.size;
+    }
+
+    private double calculateMedian() {
+        return this.fibonacciSequence.length % 2 == 1?
+            this.fibonacciSequence[this.size/2] :
+            (this.fibonacciSequence[this.size/2] + this.fibonacciSequence[this.size/2 + 1]) /2;
     }
 }
