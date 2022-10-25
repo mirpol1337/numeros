@@ -1,12 +1,13 @@
 import java.text.DecimalFormat;
 import java.util.ArrayList;
+import java.util.List;
 
 public class Main {
     private static final DecimalFormat df = new DecimalFormat("0.00");
     public static void main(String[] args) {
         int count=21;
-        ArrayList<Integer> fibonacci = new ArrayList<>();
-        for (Integer integer : Fibonacci.FibonacciGeneration(count - 2, fibonacci)) {
+        List<Integer> fibonacci = new ArrayList<>();
+        for (int integer : Fibonacci.FibonacciGeneration(count - 2, fibonacci)) {
             System.out.print(integer+" ");
         }
         System.out.println();
@@ -16,13 +17,13 @@ public class Main {
     }
 }
 class Fibonacci {
-    public static int number1 = 0;
-    public static int number2 = 1;
-    public static int number3 = 0;
-    static ArrayList<Integer> FibonacciGeneration(int count,ArrayList<Integer> sequence) {
+    private static int number1 = 0;
+    private static int number2 = 1;
+
+    static List<Integer> FibonacciGeneration(int count,List<Integer> sequence) {
 
         if (count > 0) {
-            number3 = number1 + number2;
+            int number3 = number1 + number2;
             number1 = number2;
             number2 = number3;
             if(sequence.size()==0){
@@ -34,18 +35,18 @@ class Fibonacci {
         }
         return sequence;
     }
-    static double FibonacciMean(int count,ArrayList<Integer> sequence){
+    static double FibonacciMean(int count,List<Integer> sequence){
         double sum = 0;
-        for (int i = 0; i < sequence.size(); i++) {
-            sum+= sequence.get(i);
+        for (Integer integer : sequence) {
+            sum += integer;
         }
         return sum/count;
     }
-    static int FibonacciMedian(ArrayList<Integer> sequence){
-            int middleIndex = sequence.size()/2;
-            if (sequence.size()%2==0){
-                return (sequence.get(middleIndex)+sequence.get(middleIndex-1))/2;
-            } else {
+    static int FibonacciMedian(List<Integer> sequence){
+        int middleIndex = sequence.size()/2;
+        if (sequence.size()%2==0){
+            return (sequence.get(middleIndex)+sequence.get(middleIndex-1))/2;
+        } else {
             return sequence.get(middleIndex);
         }
     }
